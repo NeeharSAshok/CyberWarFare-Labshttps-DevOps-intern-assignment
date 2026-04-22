@@ -1,0 +1,21 @@
+# /etc/ssh/sshd_config - Relevant security settings
+# Full file is at /etc/ssh/sshd_config on your server
+# Only the key directives are shown here for reference
+
+Port 22
+AddressFamily inet
+
+# Authentication
+PermitRootLogin no
+PubkeyAuthentication yes
+AuthorizedKeysFile .ssh/authorized_keys
+PasswordAuthentication no
+ChallengeResponseAuthentication no
+UsePAM yes
+
+# Limit login attempts
+MaxAuthTries 3
+LoginGraceTime 20
+
+# Allow only specific user
+AllowUsers devops

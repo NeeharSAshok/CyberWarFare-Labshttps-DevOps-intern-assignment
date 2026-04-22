@@ -1,0 +1,38 @@
+This repository contains the complete submission for the DevOps Internship assignment, 
+demonstrating practical skills in Linux server administration, containerization, 
+automated monitoring, access control, and network security.
+
+Task 1 — SSH Configuration & Secure Server Access
+The first task involves provisioning a Linux server and establishing secure remote 
+access using SSH key-based authentication. An Ed25519 key pair is generated on the 
+local machine, the public key is deployed to the server, and password authentication 
+is fully disabled in the SSH daemon configuration — ensuring that only authorized 
+key holders can access the server.
+
+Task 2 — Docker Installation & Web Application Deployment
+This task covers installing Docker on the server and deploying a containerized web 
+application. A custom Dockerfile is written using nginx:alpine as the base image, 
+serving a personalized index.html page. The image is built locally and run as a 
+detached container with the application exposed on port 8000, accessible via the 
+server's IP address through any browser.
+
+Task 3 — Automated Container Resource Monitoring
+A bash script is created to capture real-time CPU and memory usage statistics from 
+the running Docker container using docker stats. Each entry is timestamped and 
+appended to a daily log file stored in /opt/container-monitor/logs/. The script is 
+automated using a cron job configured to execute every minute, providing continuous 
+and hands-free container monitoring.
+
+Task 4 — Access Control & Log Security
+A dedicated system user named monitor is created exclusively for monitoring 
+operations. The monitoring directory /opt/container-monitor is created and its 
+ownership is assigned to this user. Directory permissions are set to 700, granting 
+full access to the monitor user while completely restricting access for all other 
+users on the system. A verification script confirms that access control is correctly 
+enforced.
+
+Task 5 — Firewall Configuration with UFW
+UFW is installed and configured with a secure rule set. SSH access is restricted 
+exclusively to a specific trusted IP address, HTTP traffic on port 80 is permitted, 
+and port 8000 is opened for the Docker web application. All other incoming traffic 
+is denied by default, resulting in a hardened and minimal attack surface.
